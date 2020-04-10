@@ -1,7 +1,11 @@
+//Core
 import React from 'react';
 import ReactDOM from 'react-dom';
+//Styles
 import './index.css';
-import App from './App';
+//components
+import App from './components/App/App';
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
