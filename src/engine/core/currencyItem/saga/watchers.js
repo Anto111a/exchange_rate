@@ -1,5 +1,5 @@
 // Modules
-import { all, call, takeEvery, put } from 'redux-saga/effects';
+import { all, call, takeEvery } from 'redux-saga/effects';
 
 // Types
 import {GET_RATE_DATA_ASYNC} from './asyncTypes';

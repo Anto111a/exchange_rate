@@ -5,29 +5,64 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getRateDataAsync } from '../../engine/core/currencyItem/saga/asyncActions';
 
 //comppponents
-import CurrencyItem from '../CurrencyItem/CurrencyItem';
+import CurrencyWidget from '../CurrencyWidget/CurrencyWidget';
+import SelectedCoinComponent from '../SelectedCoin/SelectedCoin'
+import Input from '../Input/Input';
+import CurrencyControl from '../CurrencyControl/CurrencyControl';
+import Result from '../Result/Result';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner';
+//Selectors
+import {currencyListSelector , loaderSelector} from '../../engine/core/currencyItem/selectors';
+//Styles
+import './Main.css';
 
 export default function Main() {
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(getRateDataAsync())
   }, [dispatch]);
 
-  const data = useSelector(state => state.currency.list);
-
-  if(data.length===0) {
+  const data = useSelector(currencyListSelector);
+  const loader = useSelector(loaderSelector);
+  
+  if(loader) {
     return (
-      <p>Please Wait...</p>
+      <Spinner animation="grow" variant="success" style={{width: '8rem', height: '8rem'}}/>
     );
   } 
-  return(data.map((item, index) =>
-  <div key={index}>
-      <CurrencyItem 
-        currentItem = {item.currency}
-        usd = {item.usd}
-        uah = {item.uah}
-        rub = {item.rub}
-      />
-  </div>))
+  return(
+    <Container>
+      <Row>
+        {Object.keys(data).map((item, index) =>
+          <CurrencyWidget 
+            key={index}
+            currentItem = {data[item].currency}
+            usd = {data[item].usd}
+            uah = {data[item].uah}
+            rub = {data[item].rub}
+          />
+        )}
+      </Row>
+      <Row>
+        <Col xs="12" >
+         <SelectedCoinComponent/>
+        </Col>
+      </Row>
+      <Input/>
+      <Row>
+        <Col xs="12" >
+          <CurrencyControl/>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs="12" >
+          <Result/>
+        </Col>
+      </Row>
+  </Container>
+  )
 }

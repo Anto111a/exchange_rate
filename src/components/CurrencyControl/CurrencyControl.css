@@ -1,0 +1,19 @@
+.btn-group-toggle {
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-group-toggle > .btn {
+  max-width: 60px;
+  border-radius: 0;
+  margin: 0 2%;
+  background: #0d2f52;
+  color: #86c551;
+  font-weight: bold;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active {
+  background: #86c551;
+  color: #0d2f52;
+}
+

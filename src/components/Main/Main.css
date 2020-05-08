@@ -1,0 +1,12 @@
+.selectedCoin {
+  text-align: center;
+  font-weight: 500;
+  color: #7dacf3;
+  margin: 17px auto 45px;
+  font-size: 32px;
+  letter-spacing: 1.25px;
+}
+
+.spinner-grow {
+  margin: 10% calc(50% - 4rem);
+}

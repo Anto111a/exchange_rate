@@ -1,1 +1,6 @@
 export const SET_RATE_DATA = 'SET_RATE_DATA';
+export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM';
+export const SET_VALUE = 'SET_VALUE';
+export const SET_SELECTED_CURRENCY = 'SET_SELECTED_CURRENCY';
+export const SHOW_LOADER = 'SHOW_LOADER';
+export const HIDE_LOADER = 'HIDE_LOADER';

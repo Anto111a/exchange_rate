@@ -1,0 +1,43 @@
+.col-form-label{
+  text-align:end;
+  color: #86c551;
+}
+
+.form-group {
+  justify-content: start;
+}
+.form-group input {
+  width: 100%;
+  display: block;
+  border: 1px solid;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  background-color: #06162e;
+  color: #86c551;
+}
+
+.form-control:focus {
+  background-color: #06162e;
+}
+
+.form-group .valid {
+  border-color: green;
+}
+
+.form-group .inValid {
+  border-color: red;
+}
+
+.inValid::placeholder {
+  content: "invalid value";
+  color: red;
+}
+
+@media (max-width: 580px) {
+  .col-form-label{
+    text-align:center;
+  }
+  .form-group {
+    justify-content: center;
+  }
+}

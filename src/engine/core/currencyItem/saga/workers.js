@@ -1,18 +1,32 @@
 // Modules
-import { all, call, takeEvery, put } from 'redux-saga/effects';
+import { put, delay  } from 'redux-saga/effects';
 
 //Actions
-import {setRateData} from  '../actions'
+import {setRateData, showLoader, hideLoader} from  '../actions'
 
+const DEFAULT_CURRENCY = ['btc', 'eth', 'xrp'];
 export function* getCurrencyListWorker() {
-  try {
-    const response = yield fetch('https://api.kuna.io/v3/exchange-rates')
-      .then(response => response.json());
-    const result = response.filter(item => item.currency==='btc'||item.currency==='eth'||item.currency==='xrp');
-    const action = setRateData(result);
-    yield put(action); // <-- Dispatch
-  } catch (err) {
-    // TODO: Handle error
-    console.error(err)
+  while(true) {
+     try {
+      yield put(showLoader());
+      const response = yield fetch('https://api.kuna.io/v3/exchange-rates')
+        .then(response => response.json());
+
+      const result = response.reduce((acc, item) => {
+        const { currency } = item;
+        if (DEFAULT_CURRENCY.includes(currency)) {
+          acc[currency] = item;
+        }
+        return acc;
+      }, {});
+
+      const action = setRateData(result);
+      yield put(action);
+      yield put(hideLoader());
+    } catch (err) {
+      console.error(err);
+    } finally {
+      yield delay(600000); //10 minutes
+    }
   }
 }
