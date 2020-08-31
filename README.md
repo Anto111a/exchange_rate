@@ -1,3 +1,4 @@
+This project is published at GitHub Pages - [Exchange Rate](https://anto111a.github.io/exchange_rate/).<br />
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
