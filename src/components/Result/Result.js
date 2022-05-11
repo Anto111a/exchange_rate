@@ -7,6 +7,7 @@ import{ currentCoinSelector, valueSelector, selectedCurrencySelector, resultSele
 import './Result.css';
 
 export default function Result() {
+  const test = 'test'
   const value = useSelector(valueSelector);
   const currentCoin = useSelector(currentCoinSelector).toUpperCase();
   const result = useSelector(resultSelector);
